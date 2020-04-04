@@ -90,23 +90,7 @@ classifier.fit(X_train,
                epochs = 80,
                verbose = 1,
                validation_data = (X_valid, y_valid))
-'''# Data Augmentation
-from keras.preprocessing.image import ImageDataGenerator
 
-datagen = ImageDataGenerator(rescale = 1./255,
-                                   rotation_range = 1,
-                                   zoom_range = 0.2,
-                                   width_shift_range = 0.05,
-                                   height_shift_range = 0.05)
-
-datagen.fit(X_train)
-
-classifier.fit_generator(datagen.flow(X_train, y_train, batch_size = 512),
-                         steps_per_epoch = X_train.shape[0] // 512,
-                         epochs = 10,
-                         verbose = 2,
-                         validation_data = (X_valid, y_valid))
-'''
 # Prediction
 y_pred = classifier.predict_classes(X_test)
 
